@@ -62,6 +62,23 @@ def add_product():
     print("Product added successfully!")
 
 
+def search_product():
+    keyword = input("Enter product name to search: ").lower()
+
+    found = False
+
+    for product_id, product in inventory.items():
+        if keyword in product["name"].lower():
+            print(
+                f"{product_id} - {product['name']} | "
+                f"Quantity: {product['quantity']}"
+            )
+            found = True
+
+    if not found:
+        print("No matching product found.")
+
+
 def view_products():
     if not inventory:
         print("Inventory is empty.")
@@ -99,6 +116,9 @@ def main():
         elif choice == "4":
             low_stock_report()
         elif choice == "5":
+            break
+        elif choice == "6":
+            search_product()
             break
         else:
             print("Invalid choice!")
